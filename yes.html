@@ -13,13 +13,151 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #f5d0d8 0%, #e8b4c0 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
             overflow: hidden;
+            transition: background 0.3s ease;
+        }
+
+        /* Theme 1: Pink (Default) */
+        body.theme-pink {
+            background: linear-gradient(135deg, #f5d0d8 0%, #e8b4c0 100%);
+        }
+        body.theme-pink .heart-bow,
+        body.theme-pink .heart-bow::before,
+        body.theme-pink .heart-bow::after {
+            background: #d63384;
+        }
+        body.theme-pink .nose {
+            border-top-color: #d63384;
+        }
+        body.theme-pink .yay {
+            color: #d63384;
+        }
+        body.theme-pink .cat {
+            background: #f4b183;
+        }
+        body.theme-pink .cat::before,
+        body.theme-pink .cat::after {
+            border-bottom-color: #f4b183;
+        }
+
+        /* Theme 2: Blue Ocean */
+        body.theme-blue {
+            background: linear-gradient(135deg, #89CFF0 0%, #4A90E2 100%);
+        }
+        body.theme-blue .heart-bow,
+        body.theme-blue .heart-bow::before,
+        body.theme-blue .heart-bow::after {
+            background: #4A90E2;
+        }
+        body.theme-blue .nose {
+            border-top-color: #4A90E2;
+        }
+        body.theme-blue .yay {
+            color: #4A90E2;
+        }
+        body.theme-blue .cat {
+            background: #FFB347;
+        }
+        body.theme-blue .cat::before,
+        body.theme-blue .cat::after {
+            border-bottom-color: #FFB347;
+        }
+
+        /* Theme 3: Purple Dream */
+        body.theme-purple {
+            background: linear-gradient(135deg, #E0BBE4 0%, #957DAD 100%);
+        }
+        body.theme-purple .heart-bow,
+        body.theme-purple .heart-bow::before,
+        body.theme-purple .heart-bow::after {
+            background: #8B5CF6;
+        }
+        body.theme-purple .nose {
+            border-top-color: #8B5CF6;
+        }
+        body.theme-purple .yay {
+            color: #8B5CF6;
+        }
+        body.theme-purple .cat {
+            background: #DDA0DD;
+        }
+        body.theme-purple .cat::before,
+        body.theme-purple .cat::after {
+            border-bottom-color: #DDA0DD;
+        }
+
+        /* Theme 4: Red Romance */
+        body.theme-red {
+            background: linear-gradient(135deg, #FFB6B9 0%, #EE6C7C 100%);
+        }
+        body.theme-red .heart-bow,
+        body.theme-red .heart-bow::before,
+        body.theme-red .heart-bow::after {
+            background: #DC143C;
+        }
+        body.theme-red .nose {
+            border-top-color: #DC143C;
+        }
+        body.theme-red .yay {
+            color: #DC143C;
+        }
+        body.theme-red .cat {
+            background: #FFCBA4;
+        }
+        body.theme-red .cat::before,
+        body.theme-red .cat::after {
+            border-bottom-color: #FFCBA4;
+        }
+
+        /* Theme 5: Green Nature */
+        body.theme-green {
+            background: linear-gradient(135deg, #C1E1C1 0%, #66CDAA 100%);
+        }
+        body.theme-green .heart-bow,
+        body.theme-green .heart-bow::before,
+        body.theme-green .heart-bow::after {
+            background: #2E8B57;
+        }
+        body.theme-green .nose {
+            border-top-color: #2E8B57;
+        }
+        body.theme-green .yay {
+            color: #2E8B57;
+        }
+        body.theme-green .cat {
+            background: #F4A460;
+        }
+        body.theme-green .cat::before,
+        body.theme-green .cat::after {
+            border-bottom-color: #F4A460;
+        }
+
+        /* Theme 6: Golden Sunset */
+        body.theme-gold {
+            background: linear-gradient(135deg, #FFE4B5 0%, #FFD700 100%);
+        }
+        body.theme-gold .heart-bow,
+        body.theme-gold .heart-bow::before,
+        body.theme-gold .heart-bow::after {
+            background: #FF8C00;
+        }
+        body.theme-gold .nose {
+            border-top-color: #FF8C00;
+        }
+        body.theme-gold .yay {
+            color: #FF8C00;
+        }
+        body.theme-gold .cat {
+            background: #FFA07A;
+        }
+        body.theme-gold .cat::before,
+        body.theme-gold .cat::after {
+            border-bottom-color: #FFA07A;
         }
 
         /* Confetti animation */
@@ -221,10 +359,15 @@
     </div>
 
     <script>
-        // Get name from URL parameter
+        // Get name and theme from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const name = urlParams.get('name') || 'nirali';
+        const theme = urlParams.get('theme') || 'pink';
+        
         document.getElementById('nameDisplay').textContent = name;
+        
+        // Apply theme
+        document.body.className = `theme-${theme}`;
 
         // Create confetti
         function createConfetti() {
