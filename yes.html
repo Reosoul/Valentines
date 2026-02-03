@@ -324,6 +324,42 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
+        .support-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .support-text {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .venmo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #3D95CE;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(61, 149, 206, 0.3);
+        }
+
+        .venmo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(61, 149, 206, 0.4);
+        }
+
+        .venmo-btn:active {
+            transform: scale(0.98);
+        }
+
         /* Create confetti elements */
         .confetti-container {
             position: fixed;
@@ -355,6 +391,16 @@
         
         <div class="celebration-img">
             <img id="celebrationGif" src="" alt="Celebration">
+        </div>
+        
+        <div class="support-section">
+            <p class="support-text">Enjoyed this page? Consider supporting me! 💕</p>
+            <a href="https://venmo.com/u/reosoul" target="_blank" class="venmo-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21.5 4.7c.6 1.1.9 2.3.9 3.7 0 4.6-3.9 10.6-7.1 15.6H8.2L3.5 3.8l6.4-.5 2.3 12.7c1.7-2.8 3.7-6.7 3.7-9.6 0-1.1-.2-2-.5-2.7l6.1-1z"/>
+                </svg>
+                Support on Venmo
+            </a>
         </div>
     </div>
 
