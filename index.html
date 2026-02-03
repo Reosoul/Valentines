@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5d0d8 0%, #e8b4c0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: #f5f0ed;
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            position: relative;
+        }
+
+        .cat {
+            width: 120px;
+            height: 120px;
+            background: #f4b183;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .cat::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 30px solid #f4b183;
+            top: -20px;
+            left: 10px;
+        }
+
+        .cat::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 30px solid #f4b183;
+            top: -20px;
+            right: 10px;
+        }
+
+        .heart-bow {
+            position: absolute;
+            top: -15px;
+            right: 5px;
+            width: 35px;
+            height: 35px;
+            background: #d63384;
+            transform: rotate(45deg);
+            z-index: 10;
+        }
+
+        .heart-bow::before {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: #d63384;
+            border-radius: 50%;
+            top: -17.5px;
+            left: 0;
+        }
+
+        .heart-bow::after {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: #d63384;
+            border-radius: 50%;
+            left: -17.5px;
+            top: 0;
+        }
+
+        .eyes {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 30px;
+        }
+
+        .eye {
+            width: 12px;
+            height: 12px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        .nose {
+            position: absolute;
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 10px solid #d63384;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #000;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .name {
+            font-weight: 700;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 20px;
+            min-height: 80px;
+        }
+
+        button {
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+            font-weight: 600;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .yes-btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            background: #d63384;
+            color: white;
+            box-shadow: 0 4px 15px rgba(214, 51, 132, 0.3);
+        }
+
+        .yes-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(214, 51, 132, 0.4);
+        }
+
+        .no-btn {
+            padding: 6px 16px;
+            font-size: 14px;
+            background: #999;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .no-btn:hover {
+            background: #999;
+        }
+
+        .note {
+            margin-top: 30px;
+            color: #7f5a83;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cat">
+            <div class="heart-bow"></div>
+            <div class="eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+            <div class="nose"></div>
+        </div>
+        
+        <h1><span class="name" id="nameDisplay">nirali</span> will you be my valentine?</h1>
+        
+        <div class="buttons">
+            <button class="yes-btn" id="yesBtn">Yes</button>
+            <button class="no-btn" id="noBtn">No</button>
+        </div>
+        
+        <p class="note">*No* seems a bit shy 💜</p>
+    </div>
+
+    <script>
+        // Get name from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name') || 'nirali';
+        document.getElementById('nameDisplay').textContent = name;
+
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+
+        // Handle Yes button click
+        yesBtn.addEventListener('click', () => {
+            window.location.href = `./yes.html?name=${encodeURIComponent(name)}`;
+        });
+
+        // Make No button run away from cursor
+        noBtn.addEventListener('mouseenter', moveButton);
+        noBtn.addEventListener('touchstart', moveButton);
+
+        function moveButton(e) {
+            e.preventDefault();
+            
+            const buttonRect = noBtn.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            // Generate random position within viewport
+            let newX = Math.random() * (viewportWidth - buttonRect.width - 40) + 20;
+            let newY = Math.random() * (viewportHeight - buttonRect.height - 40) + 20;
+            
+            // Apply fixed position to move anywhere on screen
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+        }
+    </script>
+</body>
+</html>

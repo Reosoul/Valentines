@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAY! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5d0d8 0%, #e8b4c0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* Confetti animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            position: absolute;
+            animation: confetti-fall linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: white;
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cat {
+            width: 140px;
+            height: 140px;
+            background: #f4b183;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .cat::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 35px solid #f4b183;
+            top: -25px;
+            left: 10px;
+        }
+
+        .cat::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 35px solid #f4b183;
+            top: -25px;
+            right: 10px;
+        }
+
+        .heart-bow {
+            position: absolute;
+            top: -15px;
+            right: 5px;
+            width: 40px;
+            height: 40px;
+            background: #d63384;
+            transform: rotate(45deg);
+            z-index: 10;
+        }
+
+        .heart-bow::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #d63384;
+            border-radius: 50%;
+            top: -20px;
+            left: 0;
+        }
+
+        .heart-bow::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #d63384;
+            border-radius: 50%;
+            left: -20px;
+            top: 0;
+        }
+
+        .eyes {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 35px;
+        }
+
+        .eye {
+            width: 14px;
+            height: 14px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        .nose {
+            position: absolute;
+            top: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 12px solid #d63384;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .name {
+            font-weight: 700;
+        }
+
+        .yay {
+            font-size: 56px;
+            font-weight: 800;
+            color: #d63384;
+            margin: 20px 0;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .celebration-img {
+            margin: 30px 0;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .celebration-img img {
+            max-width: 400px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Create confetti elements */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti-container" id="confettiContainer"></div>
+    
+    <div class="container">
+        <div class="cat">
+            <div class="heart-bow"></div>
+            <div class="eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+            <div class="nose"></div>
+        </div>
+        
+        <h1><span class="name" id="nameDisplay">nirali</span> will you be my valentine?</h1>
+        
+        <div class="yay">YAY! 🎉</div>
+        
+        <div class="celebration-img">
+            <img src="https://media.giphy.com/media/g9582DNuQppxC/giphy.gif" alt="Celebration">
+        </div>
+    </div>
+
+    <script>
+        // Get name from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name') || 'nirali';
+        document.getElementById('nameDisplay').textContent = name;
+
+        // Create confetti
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confettiContainer');
+            const colors = ['#ffd700', '#ff69b4', '#87ceeb', '#98fb98', '#dda0dd', '#f0e68c'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        createConfetti();
+    </script>
+</body>
+</html>
