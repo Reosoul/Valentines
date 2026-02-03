@@ -418,10 +418,11 @@
     </div>
 
     <script>
-        // Get name and theme from URL parameters
+        // Get name, theme, and gif from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const name = urlParams.get('name') || 'nirali';
         const theme = urlParams.get('theme') || 'pink';
+        const gifChoice = urlParams.get('gif') || '1';
         
         document.getElementById('nameDisplay').textContent = name;
         
@@ -435,7 +436,7 @@
 
         // Handle Yes button click
         yesBtn.addEventListener('click', () => {
-            window.location.href = `./yes.html?name=${encodeURIComponent(name)}&theme=${encodeURIComponent(theme)}`;
+            window.location.href = `./yes.html?name=${encodeURIComponent(name)}&theme=${encodeURIComponent(theme)}&gif=${encodeURIComponent(gifChoice)}`;
         });
 
         // Make No button run away from cursor

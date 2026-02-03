@@ -354,20 +354,29 @@
         <div class="yay">YAY! 🎉</div>
         
         <div class="celebration-img">
-            <img src="https://media.giphy.com/media/g9582DNuQppxC/giphy.gif" alt="Celebration">
+            <img id="celebrationGif" src="" alt="Celebration">
         </div>
     </div>
 
     <script>
-        // Get name and theme from URL parameters
+        // Get name, theme, and gif from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const name = urlParams.get('name') || 'nirali';
         const theme = urlParams.get('theme') || 'pink';
+        const gifChoice = urlParams.get('gif') || '1';
         
         document.getElementById('nameDisplay').textContent = name;
         
         // Apply theme
         document.body.className = `theme-${theme}`;
+
+        // Set celebration GIF
+        const gifMap = {
+            '1': 'celebration1.gif',
+            '2': 'celebration2.gif',
+            '3': 'celebration3.gif'
+        };
+        document.getElementById('celebrationGif').src = gifMap[gifChoice] || gifMap['1'];
 
         // Create confetti
         function createConfetti() {

@@ -78,7 +78,15 @@
             margin-top: 15px;
         }
 
-        .theme-option {
+        .gifs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .theme-option,
+        .gif-option {
             position: relative;
             cursor: pointer;
             border-radius: 15px;
@@ -87,12 +95,14 @@
             border: 3px solid transparent;
         }
 
-        .theme-option:hover {
+        .theme-option:hover,
+        .gif-option:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
-        .theme-option.selected {
+        .theme-option.selected,
+        .gif-option.selected {
             border-color: #d63384;
             box-shadow: 0 10px 30px rgba(214, 51, 132, 0.3);
         }
@@ -160,6 +170,31 @@
         }
 
         .theme-name {
+            padding: 12px;
+            text-align: center;
+            background: white;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .gif-preview {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .gif-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gif-name {
             padding: 12px;
             text-align: center;
             background: white;
@@ -262,7 +297,8 @@
         }
 
         @media (max-width: 600px) {
-            .themes-grid {
+            .themes-grid,
+            .gifs-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -320,6 +356,30 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label>Choose a Celebration GIF</label>
+            <div class="gifs-grid">
+                <div class="gif-option selected" data-gif="1">
+                    <div class="gif-preview">
+                        <img src="celebration1.gif" alt="Dancing celebration">
+                    </div>
+                    <div class="gif-name">Dancing</div>
+                </div>
+                <div class="gif-option" data-gif="2">
+                    <div class="gif-preview">
+                        <img src="celebration2.gif" alt="Cheers celebration">
+                    </div>
+                    <div class="gif-name">Cheers</div>
+                </div>
+                <div class="gif-option" data-gif="3">
+                    <div class="gif-preview">
+                        <img src="celebration3.gif" alt="Win celebration">
+                    </div>
+                    <div class="gif-name">Victory</div>
+                </div>
+            </div>
+        </div>
+
         <button class="submit-btn" id="generateBtn">Generate Link 💕</button>
 
         <div class="result-section" id="resultSection">
@@ -334,12 +394,14 @@
     <script>
         const nameInput = document.getElementById('nameInput');
         const themeOptions = document.querySelectorAll('.theme-option');
+        const gifOptions = document.querySelectorAll('.gif-option');
         const generateBtn = document.getElementById('generateBtn');
         const resultSection = document.getElementById('resultSection');
         const generatedUrl = document.getElementById('generatedUrl');
         const copyBtn = document.getElementById('copyBtn');
         
         let selectedTheme = 'pink';
+        let selectedGif = '1';
         const baseUrl = 'https://reosoul.github.io/Valentines/';
 
         // Theme selection
@@ -351,10 +413,19 @@
             });
         });
 
+        // GIF selection
+        gifOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                gifOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedGif = option.dataset.gif;
+            });
+        });
+
         // Generate URL
         generateBtn.addEventListener('click', () => {
             const name = nameInput.value.trim() || 'nirali';
-            const url = `${baseUrl}?name=${encodeURIComponent(name)}&theme=${selectedTheme}`;
+            const url = `${baseUrl}?name=${encodeURIComponent(name)}&theme=${selectedTheme}&gif=${selectedGif}`;
             
             generatedUrl.textContent = url;
             resultSection.classList.add('show');
