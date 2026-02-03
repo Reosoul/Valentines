@@ -18,7 +18,8 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             transition: background 0.3s ease;
         }
 
@@ -187,6 +188,14 @@
             text-align: center;
             position: relative;
             z-index: 10;
+            margin: auto;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+                margin: 20px auto;
+            }
         }
 
         .cat {
@@ -369,6 +378,7 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
+            overflow: hidden;
         }
     </style>
 </head>
