@@ -296,6 +296,50 @@
             background: #28a745;
         }
 
+        .support-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+
+        .support-section.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        .support-text {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .venmo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #3D95CE;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(61, 149, 206, 0.3);
+        }
+
+        .venmo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(61, 149, 206, 0.4);
+        }
+
+        .venmo-btn:active {
+            transform: scale(0.98);
+        }
+
         @media (max-width: 600px) {
             .themes-grid,
             .gifs-grid {
@@ -389,6 +433,16 @@
                 <button class="copy-btn" id="copyBtn">📋 Copy</button>
             </div>
         </div>
+
+        <div class="support-section" id="supportSection">
+            <p class="support-text">Enjoyed making this? Consider supporting me! 💕</p>
+            <a href="https://venmo.com/u/reosoul" target="_blank" class="venmo-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21.5 4.7c.6 1.1.9 2.3.9 3.7 0 4.6-3.9 10.6-7.1 15.6H8.2L3.5 3.8l6.4-.5 2.3 12.7c1.7-2.8 3.7-6.7 3.7-9.6 0-1.1-.2-2-.5-2.7l6.1-1z"/>
+                </svg>
+                Support on Venmo
+            </a>
+        </div>
     </div>
 
     <script>
@@ -429,6 +483,9 @@
             
             generatedUrl.textContent = url;
             resultSection.classList.add('show');
+            
+            // Show support section
+            document.getElementById('supportSection').classList.add('show');
             
             // Reset copy button
             copyBtn.textContent = '📋 Copy';
